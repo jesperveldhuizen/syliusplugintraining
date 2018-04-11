@@ -2,6 +2,7 @@
 
 namespace Acme\SyliusExamplePlugin\OrderProcessor;
 
+use Acme\SyliusExamplePlugin\Entity\Order;
 use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Order\Factory\AdjustmentFactory;
 use Sylius\Component\Order\Factory\AdjustmentFactoryInterface;
@@ -25,13 +26,21 @@ class GiftWrapperOrderProcessor implements OrderProcessorInterface
      */
     public function process(OrderInterface $order): void
     {
+        if (!$order instanceof Order) {
+            return;
+        }
+
+        $order->removeAdjustments('gift_wrapped');
+
+        if (!$order->isGiftWrapped()) {
+            return;
+        }
+
         /** @var AdjustmentInterface $adjustment */
         $adjustment = $this->adjustmentFactory->createNew();
-
         $adjustment->setAmount(1000);
         $adjustment->setType('gift_wrapped');
 
         $order->addAdjustment($adjustment);
-
     }
 }

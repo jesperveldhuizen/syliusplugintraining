@@ -24,5 +24,6 @@ final class GiftWrappedContext implements Context
     public function iRequestMyOrderToBePackedAsAGift(): void
     {
         $this->summaryPage->checkAsAGiftWrapped();
+        $this->summaryPage->updateCart();
     }
 }
