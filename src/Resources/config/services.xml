@@ -18,5 +18,11 @@
                  event="sonata.block.event.sylius.shop.cart.summary.before_coupon"
                  method="onBlockEvent" />
         </service>
+
+        <service class="Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperOrderProcessor" id="acme.sylius_example_plugin.order_processor.gift_wrapper_order_processor">
+            <argument id="sylius.factory.adjustment" type="service"/>
+            <tag name="sylius.order_processor"/>
+        </service>
+
     </services>
 </container>
