@@ -18,3 +18,10 @@ Feature: Request gift wrapping of an extra charge
   Scenario: When you add an item for the first time it should be 100 dollars
     When I add product "PHP T-Shirt" to the cart
     Then my cart total should be "$100.00"
+
+  @ui
+  Scenario: Gift wrapping fee is added only once to the cart
+    When I add product "PHP T-Shirt" to the cart
+    And I request my order to be packed as a gift
+    And I add product "PHP T-Shirt" to the cart
+    Then my cart total should be "$210.00"
