@@ -32,5 +32,10 @@
             <argument type="service" id="__symfony__.sylius.manager.order"/>
         </service>
 
+        <service class="Tests\Acme\SyliusExamplePlugin\Behat\Context\Transform\OrderTransformContext" id="tests.acme.sylius_example_plugin.behat.context.transform.order_transform_context">
+            <tag name="fob.context_service"/>
+            <argument type="service" id="__symfony__.sylius.repository.order"/>
+        </service>
+
     </services>
 </container>

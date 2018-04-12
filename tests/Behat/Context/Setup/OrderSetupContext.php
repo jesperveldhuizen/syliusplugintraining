@@ -33,14 +33,10 @@ class OrderSetupContext implements Context
 
 
     /**
-     * @Given I requested my order to be packed as a gift
+     * @Given /^I requested (my order) to be packed as a gift$/
      */
-    public function iRequestedMyOrderToBePackedAsAGift()
+    public function iRequestedMyOrderToBePackedAsAGift(Order $order)
     {
-        /** @var Order $order */
-        $array = $this->orderRepository->findAll();
-        $order = end($array);
-
         $order->setGiftWrapped(true);
         $this->objectManager->flush();
     }

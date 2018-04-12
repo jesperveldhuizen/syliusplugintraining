@@ -34,5 +34,6 @@ default:
                 - sylius.behat.context.ui.shop.cart
                 - acme_sylius_example.context.ui.shop.gift_wrapped_context
                 - tests.acme.sylius_example_plugin.behat.context.setup.order_setup_context
+                - tests.acme.sylius_example_plugin.behat.context.transform.order_transform_context
             filters:
                 tags: "@gift_wrapping && @ui"
