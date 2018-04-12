@@ -1,6 +1,10 @@
 {% if settings.cart.giftWrapped == false %}
     {{ form_row(settings.form.giftWrapped) }}
+    {{ form_row(settings.form.giftMessage) }}
 {% else %}
+    <p id="sylius_cart_giftMessage">
+        {{ settings.cart.giftMessage }}
+    </p>
     <a id="sylius_cart_giftUnwrapped" href="{{ path('acme_sylius_gift_unwrapper', {id: settings.cart.id}) }}">Unwrap</a>
 {% endif %}
 

@@ -20,10 +20,11 @@ final class GiftWrappedContext implements Context
 
     /**
      * @When I request my order to be packed as a gift
+     * @When I request my order to be packed as a gift with the message :message
      */
-    public function iRequestMyOrderToBePackedAsAGift(): void
+    public function iRequestMyOrderToBePackedAsAGift(string $message = ''): void
     {
-        $this->summaryPage->checkAsAGiftWrapped();
+        $this->summaryPage->checkAsAGiftWrapped($message);
         $this->summaryPage->updateCart();
     }
 
@@ -35,5 +36,13 @@ final class GiftWrappedContext implements Context
         $this->summaryPage->open();
         $this->summaryPage->unwrapGift();
         $this->summaryPage->updateCart();
+    }
+
+    /**
+     * @Then I should be able to add a text for the gift
+     */
+    public function iShouldBeAbleToAddATextForTheGift()
+    {
+        $this->summaryPage->getGiftMessage();
     }
 }
