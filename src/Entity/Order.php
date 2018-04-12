@@ -9,7 +9,7 @@ class Order extends BaseOrder
     /** @var bool */
     private $giftWrapped = false;
 
-    public function setGiftWrapped(?bool $giftWrapped): void
+    public function setGiftWrapped(bool $giftWrapped): void
     {
         $this->giftWrapped = $giftWrapped;
     }

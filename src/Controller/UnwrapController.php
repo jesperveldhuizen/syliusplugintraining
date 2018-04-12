@@ -37,6 +37,10 @@ class UnwrapController
 
         $this->unwrapService->unwrap($id);
 
-        return new RedirectResponse($request->headers->get('referer'));
+        $referer = $request->headers->get('referer');
+
+        assert(is_string($referer));
+
+        return new RedirectResponse($referer);
     }
 }

@@ -6,6 +6,7 @@
 
 namespace Acme\SyliusExamplePlugin\Service;
 
+use Acme\SyliusExamplePlugin\Entity\Order;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 
@@ -33,7 +34,13 @@ final class UnwrapService implements UnwrapServiceInterface
 
     public function unwrap(int $id): void
     {
+        /** @var Order $order */
         $order = $this->orderRepository->find($id);
+
+        if ($order == null) {
+            throw new \InvalidArgumentException('No order found');
+        }
+
         $order->setGiftWrapped(false);
 
         $this->objectManager->flush();

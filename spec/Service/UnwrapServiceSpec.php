@@ -43,5 +43,14 @@ class UnwrapServiceSpec extends ObjectBehavior
 
     }
 
+    function it_throws_exception_when_no_order_was_found(
+        OrderRepositoryInterface $orderRepository
+
+    )
+    {
+        $orderRepository->find(1)->willReturn(null);
+        $this->shouldThrow(\InvalidArgumentException::class)->during('unwrap', [1]);
+    }
+
 
 }
