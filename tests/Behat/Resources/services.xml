@@ -26,5 +26,11 @@
             public="false"
         />
 
+        <service class="Tests\Acme\SyliusExamplePlugin\Behat\Context\Setup\OrderSetupContext" id="tests.acme.sylius_example_plugin.behat.context.setup.order_setup_context">
+            <tag name="fob.context_service"/>
+            <argument type="service" id="__symfony__.sylius.repository.order"/>
+            <argument type="service" id="__symfony__.sylius.manager.order"/>
+        </service>
+
     </services>
 </container>
