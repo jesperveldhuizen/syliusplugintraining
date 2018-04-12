@@ -9,3 +9,8 @@ acme_sylius_example_dynamic_welcome:
     defaults:
         _controller: AcmeSyliusExamplePlugin:Greeting:dynamicallyGreet
         name: ~
+
+acme_sylius_gift_unwrapper:
+    path: /unwrap/{id}
+    defaults:
+        _controller: acme.sylius_example_plugin.controller.unwrap_controller

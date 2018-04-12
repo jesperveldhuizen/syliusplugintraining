@@ -25,3 +25,10 @@ Feature: Request gift wrapping of an extra charge
     And I request my order to be packed as a gift
     And I add product "PHP T-Shirt" to the cart
     Then my cart total should be "$210.00"
+
+  @ui
+  Scenario: When i uncheck the gift wrapper it should be 100 dollars
+    When I add product "PHP T-Shirt" to the cart
+    And I request my order to be packed as a gift
+    And I request my order to not be packed as a gift
+    Then my cart total should be "$100.00"

@@ -26,4 +26,14 @@ final class GiftWrappedContext implements Context
         $this->summaryPage->checkAsAGiftWrapped();
         $this->summaryPage->updateCart();
     }
+
+
+    /**
+     * @When I request my order to not be packed as a gift
+     */
+    public function iRequestMyOrderToNotBePackedAsAGift()
+    {
+        $this->summaryPage->unwrapGift();
+        $this->summaryPage->updateCart();
+    }
 }

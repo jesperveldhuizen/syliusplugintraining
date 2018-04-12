@@ -24,5 +24,9 @@
             <tag name="sylius.order_processor"/>
         </service>
 
+        <service id="acme.sylius_example_plugin.controller.unwrap_controller" class="Acme\SyliusExamplePlugin\Controller\UnwrapController">
+            <argument type="service" id="sylius.repository.order" />
+            <argument type="service" id="sylius.manager.order" />
+        </service>
     </services>
 </container>
