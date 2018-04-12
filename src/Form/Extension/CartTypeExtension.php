@@ -9,6 +9,7 @@ use Sylius\Bundle\OrderBundle\Form\Type\CartType;
 use Sylius\Bundle\PromotionBundle\Form\Type\PromotionCouponToCodeType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
@@ -19,6 +20,7 @@ final class CartTypeExtension extends AbstractTypeExtension
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('giftWrapped', CheckboxType::class);
+        $builder->add('giftMessage', TextType::class);
     }
 
     public function getExtendedType(): string

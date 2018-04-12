@@ -6,7 +6,7 @@ use Acme\SyliusExamplePlugin\Entity\Order;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class OrderSpec extends ObjectBehavior
+final class OrderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
@@ -22,5 +22,11 @@ class OrderSpec extends ObjectBehavior
     function it_is_not_gift_wrapped_by_default()
     {
         $this->isGiftWrapped()->shouldReturn(false);
+    }
+
+    function it_has_a_gift_message_field(): void
+    {
+        $this->setGiftMessage('Hello world');
+        $this->getGiftMessage()->shouldReturn('Hello world');
     }
 }

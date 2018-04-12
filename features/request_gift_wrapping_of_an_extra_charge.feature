@@ -25,3 +25,9 @@ Feature: Request gift wrapping of an extra charge
     And I requested my order to be packed as a gift
     When I request my order to not be packed as a gift
     Then my cart total should be "$100.00"
+
+  @ui
+  Scenario: When I order an item with a gift wrap, it should contain a text
+    Given I added product "PHP T-Shirt" to the cart
+    When I request my order to be packed as a gift with the message "Hello world"
+    Then I should be able to add a text for the gift
