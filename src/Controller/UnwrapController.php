@@ -10,6 +10,8 @@ namespace Acme\SyliusExamplePlugin\Controller;
 
 
 use Acme\SyliusExamplePlugin\Entity\Order;
+use Acme\SyliusExamplePlugin\Service\UnwrapService;
+use Acme\SyliusExamplePlugin\Service\UnwrapServiceInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Component\Core\Repository\OrderRepositoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,31 +21,21 @@ use Symfony\Component\HttpFoundation\Response;
 class UnwrapController
 {
     /**
-     * @var OrderRepositoryInterface
+     * @var UnwrapServiceInterface
      */
-    private $orderRepository;
-    /**
-     * @var ObjectManager
-     */
-    private $objectManager;
+    private $unwrapService;
 
     public function __construct(
-        OrderRepositoryInterface $orderRepository,
-        ObjectManager $objectManager
+        UnwrapServiceInterface $unwrapService
     ) {
-        $this->orderRepository = $orderRepository;
-        $this->objectManager = $objectManager;
+        $this->unwrapService = $unwrapService;
     }
 
     public function __invoke(Request $request)
     {
         $id = $request->attributes->get('id');
 
-        /** @var Order $order */
-        $order = $this->orderRepository->find($id);
-        $order->setGiftWrapped(false);
-
-        $this->objectManager->flush();
+        $this->unwrapService->unwrap($id);
 
         return new RedirectResponse($request->headers->get('referer'));
     }

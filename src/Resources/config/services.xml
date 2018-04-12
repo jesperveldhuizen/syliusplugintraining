@@ -30,8 +30,14 @@
         </service>
 
         <service id="acme.sylius_example_plugin.controller.unwrap_controller" class="Acme\SyliusExamplePlugin\Controller\UnwrapController">
+            <argument type="service" id="acme.sylius_example_plugin.service.unwrap_service"/>
+
+        </service>
+
+        <service class="Acme\SyliusExamplePlugin\Service\UnwrapService" id="acme.sylius_example_plugin.service.unwrap_service">
             <argument type="service" id="sylius.repository.order" />
             <argument type="service" id="sylius.manager.order" />
         </service>
+
     </services>
 </container>
