@@ -21,7 +21,12 @@
 
         <service class="Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperOrderProcessor" id="acme.sylius_example_plugin.order_processor.gift_wrapper_order_processor">
             <argument id="sylius.factory.adjustment" type="service"/>
-            <tag name="sylius.order_processor"/>
+            <tag name="sylius.order_processor" priority="54"/>
+        </service>
+
+        <service class="Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperOrderAdjustmentClearerProcessor" id="acme.sylius_example_plugin.order_processor.gift_wrapper_order_adjustment_clearer_processor">
+            <argument id="sylius.factory.adjustment" type="service"/>
+            <tag name="sylius.order_processor" priority="55"/>
         </service>
 
         <service id="acme.sylius_example_plugin.controller.unwrap_controller" class="Acme\SyliusExamplePlugin\Controller\UnwrapController">
