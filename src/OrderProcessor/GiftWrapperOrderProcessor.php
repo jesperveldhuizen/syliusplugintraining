@@ -30,8 +30,6 @@ class GiftWrapperOrderProcessor implements OrderProcessorInterface
             return;
         }
 
-        $order->removeAdjustments('gift_wrapped');
-
         if (!$order->isGiftWrapped()) {
             return;
         }

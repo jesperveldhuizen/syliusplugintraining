@@ -33,8 +33,6 @@ class GiftWrapperOrderProcessorSpec extends ObjectBehavior
         AdjustmentInterface $adjustment,
         AdjustmentFactoryInterface $adjustmentFactory
     ) {
-        $order->removeAdjustments('gift_wrapped')->shouldBeCalled();
-
         $order->isGiftWrapped()->willReturn(true);
 
         $adjustmentFactory->createNew()->willReturn($adjustment);
@@ -48,7 +46,6 @@ class GiftWrapperOrderProcessorSpec extends ObjectBehavior
     function it_should_not_add_to_a_adjustment_if_the_order_is_not_gift_wrapped(
         Order $order
     ) {
-        $order->removeAdjustments('gift_wrapped')->shouldBeCalled();
         $order->isGiftWrapped()->willReturn(false);
 
         $order->addAdjustment(Argument::any())->shouldNotBeCalled();
