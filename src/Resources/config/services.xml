@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service
+            id="app.form_extension.cart_type_extension"
+            class="Acme\SyliusExamplePlugin\Form\Extension\CartTypeExtension">
+            <tag
+                name="form.type_extension"
+                extended-type="Sylius\Bundle\OrderBundle\Form\Type\CartType" />
+        </service>
+        <service id="app.block.summary_form_type" class="Sylius\Bundle\UiBundle\Block\BlockEventListener">
+            <argument>@AcmeSyliusExamplePlugin/_giftWrappedForm.html.twig</argument>
+            <tag name="kernel.event_listener"
+                 event="sonata.block.event.sylius.shop.cart.summary.before_coupon"
+                 method="onBlockEvent" />
+        </service>
+
+        <service class="Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperOrderProcessor" id="acme.sylius_example_plugin.order_processor.gift_wrapper_order_processor">
+            <argument id="sylius.factory.adjustment" type="service"/>
+            <tag name="sylius.order_processor" priority="54"/>
+        </service>
+
+        <service class="Acme\SyliusExamplePlugin\OrderProcessor\GiftWrapperOrderAdjustmentClearerProcessor" id="acme.sylius_example_plugin.order_processor.gift_wrapper_order_adjustment_clearer_processor">
+            <argument id="sylius.factory.adjustment" type="service"/>
+            <tag name="sylius.order_processor" priority="55"/>
+        </service>
+
+        <service id="acme.sylius_example_plugin.controller.unwrap_controller" class="Acme\SyliusExamplePlugin\Controller\UnwrapController">
+            <argument type="service" id="acme.sylius_example_plugin.service.unwrap_service"/>
+
+        </service>
+
+        <service class="Acme\SyliusExamplePlugin\Service\UnwrapService" id="acme.sylius_example_plugin.service.unwrap_service">
+            <argument type="service" id="sylius.repository.order" />
+            <argument type="service" id="sylius.manager.order" />
+        </service>
+
+    </services>
+</container>
